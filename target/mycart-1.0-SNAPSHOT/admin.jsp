@@ -1,3 +1,5 @@
+<%@page import="com.learn.mycart.helper.Helper"%>
+<%@page import="java.util.Map"%>
 <%@page import="com.learn.mycart.entities.Category"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
@@ -29,6 +31,14 @@
     
     
  %>
+   <%
+        CategoryDao cdao=new CategoryDao(FactoryProvider.getFactory());
+        List<Category> list=cdao.getCategories();
+        Map<String,Long> m=Helper.getCounts(FactoryProvider.getFactory());                      
+
+                           
+                           
+    %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -55,7 +65,7 @@
                             <div class="container">
                                 <<img style="max-width: 125px;" class="img-fluid rounded-circle" src="img/team.png" alt="user_icon"/>
                             </div>
-                            <h1>1234</h1>
+                            <h1><%= m.get("userCount")%></h1>
                             <h1 class="text-uppercase text-muted">Users</h1>
                         </div>
                     </div>
@@ -67,7 +77,7 @@
                             <div class="container">
                                 <<img style="max-width: 125px;" class="img-fluid rounded-circle" src="img/options.png" alt="categories_icon"/>
                             </div>
-                            <h1>1234</h1>
+                            <h1><%= list.size()%></h1>
                             <h1 class="text-uppercase text-muted">Categories</h1>
                         </div>
                     </div> 
@@ -78,7 +88,7 @@
                             <div class="container">
                                 <<img style="max-width: 125px;" class="img-fluid rounded-circle" src="img/delivery-box.png" alt="user_icon"/>
                             </div>
-                            <h1>1234</h1>
+                            <h1><%= m.get("productCount")%></h1>
                             <h1 class="text-uppercase text-muted">Products</h1>
                         </div>
                     </div>
@@ -189,12 +199,7 @@
                                 
                                 
                             </div>
-                           <%
-                               CategoryDao cdao=new CategoryDao(FactoryProvider.getFactory());
-                               List<Category> list=cdao.getCategories();
-                           
-                           
-                           %>
+                         
                            <div class="form-group " >
                                <select name="catId" class="form-control" id="">
                                    
@@ -235,6 +240,6 @@
             </div>
         </div>
         
-        
+                                   <%@include file="components/common_modals.jsp"  %>%>
     </body>
 </html>

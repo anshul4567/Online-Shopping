@@ -92,7 +92,7 @@
                                     
                                 </div>
                                     <div class="card-footer text-center">
-                                        <button class="btn custom-bg text-white">Add to Cart</button>
+                                        <button class="btn custom-bg text-white" onclick="add_to_cart(<%= p.getpId()%> , '<%= p.getpName()%>' , <%= p.getPriceAfterApplyingDiscount()%>)">Add to Cart</button>
                                          <button class="btn btn-outline-success"> &#8377;<%= p.getPriceAfterApplyingDiscount()%>/- <span class="text-secondary discount-label"> &#8377; <%= p.getpPrice()%> , <%= p.getpDiscount()%>%off</span></button>
                                     </div>
                                 
@@ -116,6 +116,7 @@
         </div>
                        
         </div>
-        
+                      
+                            <%@include file="components/common_modals.jsp" %>
     </body>
 </html>
